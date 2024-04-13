@@ -13,10 +13,11 @@
 		
 		//Your code goes here
 		function generateTable() {
+		
 			const rows = document.getElementById('t1').value;
     		const columns = document.getElementById('t2').value;
-			alert(rows);
-			alert(columns);
+			/* alert(rows);
+			alert(columns); */
 			var tableElem, rowElem, colElem;
 
 			if (rows == "" || columns== "") {
@@ -24,13 +25,17 @@
 			} else {
 				tableElem = document.createElement('table');
 				tableElem.border=1;
+				tableElem.id="dynamictable"
 				for (var i = 0; i < rows; i++) {
 					rowElem = document.createElement('tr');
 
 					for (var j = 0; j < columns; j++) {
 						colElem = document.createElement('td');
+						colElem.appendChild(document.createTextNode(i + 1));
 						colElem.appendChild(document.createTextNode(j + 1)); 
+						
 						rowElem.appendChild(colElem);
+						
 					}
 
 					tableElem.appendChild(rowElem);
@@ -44,6 +49,48 @@
 			document.getElementById('b1').hidden = true;
 			
 		}
+		function addRow() {
+		// Get a reference to the table
+		let tableRef = document.getElementById("dynamictable");
+
+		// Insert a row at the end of the table
+		let newRow = tableRef.insertRow(-1);
+		//get number of columns
+		let numCols = tableRef.rows[0].cells.length;
+		for (let i = 0; i < numCols; i++) {
+        const newCell = newRow.insertCell(i);
+        newCell.textContent = ` ${tableRef.rows.length}${i + 1}`;
+        
+    	}
+		}
+
+		//add row function
+		function addRow() {
+		
+		let tableRef = document.getElementById("dynamictable");
+
+		// Insert a row at the end of the table
+		let newRow = tableRef.insertRow(-1);
+		//get number of columns
+		let numCols = tableRef.rows[0].cells.length;
+		for (let i = 0; i < numCols; i++) {
+        const newCell = newRow.insertCell(i);
+        newCell.textContent = `${tableRef.rows.length}${i + 1}`;
+        
+   		}
+		}
+		
+		//add column function
+			function addColumn() {
+		
+				let tableRef = document.getElementById("dynamictable");
+				Array.from(tableRef.rows).forEach((row, index) => {
+				const newCell = row.insertCell(-1);
+				newCell.textContent = `${index + 1}${row.cells.length}`;
+				
+			});
+		}
+   
 			
 	</script>
 	
