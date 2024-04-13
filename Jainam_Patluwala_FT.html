@@ -12,6 +12,7 @@
 	<script language="javascript">
 		
 		//Your code goes here
+		//Jainam Patluwala C0902797
 		function generateTable() {
 		
 			const rows = document.getElementById('t1').value;
@@ -32,6 +33,7 @@
 					for (var j = 0; j < columns; j++) {
 						colElem = document.createElement('td');
 						colElem.appendChild(document.createTextNode(i + 1));
+						colElem.appendChild(document.createTextNode(","));
 						colElem.appendChild(document.createTextNode(j + 1)); 
 						
 						rowElem.appendChild(colElem);
@@ -44,6 +46,7 @@
 				document.body.appendChild(tableElem);
 
     		}
+			
 			document.getElementById('t1').hidden = true;
 			document.getElementById('t2').hidden = true;
 			document.getElementById('b1').hidden = true;
@@ -62,7 +65,6 @@
 		for (let i = 0; i < numCols; i++) {
         const newCell = newRow.insertCell(i);
         newCell.textContent = ` ${tableRef.rows.length}${i + 1}`;
-        
     	}
 		}
 
@@ -77,18 +79,18 @@
 		let numCols = tableRef.rows[0].cells.length;
 		for (let i = 0; i < numCols; i++) {
         const newCell = newRow.insertCell(i);
-        newCell.textContent = `${tableRef.rows.length}${i + 1}`;
+        newCell.textContent = `New-Row-${tableRef.rows.length},${i + 1}`;
         
    		}
 		}
 		
 		//add column function
-			function addColumn() {
+	    function addColumn() {
 		
 				let tableRef = document.getElementById("dynamictable");
 				Array.from(tableRef.rows).forEach((row, index) => {
 				const newCell = row.insertCell(-1);
-				newCell.textContent = `${index + 1}${row.cells.length}`;
+				newCell.textContent = `New-Column-${index + 1},${row.cells.length}`;
 				
 			});
 		}
